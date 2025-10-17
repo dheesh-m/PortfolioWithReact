@@ -1,13 +1,225 @@
+/* === General Body Styles === */
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    background-color: #1A1A1A;
+    color: #E5E7EB; 
+    font-family: 'Inter', sans-serif;
+    scroll-behavior: smooth;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+h1, h2, h3, p {
+    margin: 0;
+}
+
+section {
+    min-height: 100vh;
+    padding: 5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+/* === Animation Styles === */
+@keyframes slideIn {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.slide-in {
+    opacity: 0; /* Hidden by default */
+    transition: opacity 0.5s ease-out;
+}
+
+.is-visible {
+    opacity: 1;
+    animation: slideIn 0.8s forwards;
+}
+
+/* Animation Delays */
+.content-grid > .slide-in:nth-child(1) { animation-delay: 0.2s; }
+.content-grid > .slide-in:nth-child(2) { animation-delay: 0.4s; }
+.content-grid > .slide-in:nth-child(3) { animation-delay: 0.6s; }
+
+/* === Navbar Styles === */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 50;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.nav-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    transition: color 0.3s;
+}
+.nav-link span {
+    font-size: 0.75rem;
+}
+.nav-link:hover { color: #FF7A00; }
+.nav-link-education:hover { color: #ADFF00; }
+.nav-link-projects:hover { color: #00FFFF; }
+.nav-link-skills:hover { color: #FF00FF; }
+.nav-link-certs:hover { color: #FFFF00; }
+.nav-link-contact:hover { color: #FF4500; }
+
+/* === Section Title Styles === */
+.section-title {
+    font-size: 2.25rem;
+    font-weight: bold;
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+/* === Home Section === */
+.home-container {
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+}
+
+.home-text {
+    flex: 1;
+}
+
+.home-text h1 {
+    font-weight: 900;
+    font-size: 3.75rem;
+    color: white;
+    margin-bottom: 1rem;
+}
+
+.home-text p {
+    color: #9CA3AF;
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.portfolio-button {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px;
+    background-color: #FF7A00;
+    color: black;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+.portfolio-button:hover {
+    background-color: #ADFF00;
+}
+
+.profile-image-container {
+    flex-shrink: 0;
+    width: 16rem;
+    border-radius: 1rem;
+    overflow: hidden;
+    background-color: white;
+    padding: 0.5rem;
+}
+
+.profile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    aspect-ratio: 5/9;
+}
+
+/* === Grid Styles for Education, Projects, etc. === */
+.content-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.card {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 1.5rem;
+    border-radius: 1rem;
+    text-align: center;
+    transition: all 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.card h3 {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+.card p {
+    color: #D1D5DB; 
+}
+.card .card-subtitle {
+    color: #9CA3AF; 
+}
+
+/* === Skills Section === */
+#skills .content-grid div {
+    text-align: center;
+}
+#skills h3 {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+/* === Contact Section === */
+.contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    font-size: 1.875rem;
+}
+.contact-links a {
+    transition: color 0.3s;
+}
+
+/* === Responsive Design === */
+@media (max-width: 1024px) {
+    .home-container {
+        flex-direction: column-reverse;
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px) {
+    section {
+        padding: 4rem 1rem;
+    }
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+    .home-text h1 {
+        font-size: 2.25rem;
+    }
 }
